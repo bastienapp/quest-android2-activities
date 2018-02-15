@@ -1,8 +1,8 @@
 package fr.wcs.blablawild;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,21 +18,21 @@ public class ItinerarySearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_itinerary_search);
 
-        final EditText departure = findViewById(R.id.departureValue);
-        final EditText destination = findViewById(R.id.destinationValue);
+        final EditText editDeparture = findViewById(R.id.edit_departure);
+        final EditText editDestination = findViewById(R.id.edit_destination);
 
-        Button searchItinerary = findViewById(R.id.searchItinerary);
-        searchItinerary.setOnClickListener(new View.OnClickListener() {
+        Button buttonSearchItinerary = findViewById(R.id.button_search_itinerary_action);
+        buttonSearchItinerary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String departureContent = departure.getText().toString();
-                String destinationContent = destination.getText().toString();
-                if (departureContent.isEmpty() || destinationContent.isEmpty()) {
+                String departure = editDeparture.getText().toString();
+                String destination = editDestination.getText().toString();
+                if (departure.isEmpty() || destination.isEmpty()) {
                     Toast.makeText(ItinerarySearchActivity.this, R.string.search_error, Toast.LENGTH_LONG).show();
                 } else {
                     Intent intent = new Intent(ItinerarySearchActivity.this, ItineraryListActivity.class);
-                    intent.putExtra(EXTRA_DEPARTURE, departureContent);
-                    intent.putExtra(EXTRA_DESTINATION, destinationContent);
+                    intent.putExtra(EXTRA_DEPARTURE, departure);
+                    intent.putExtra(EXTRA_DESTINATION, destination);
                     startActivity(intent);
                 }
             }
